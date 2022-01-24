@@ -44,7 +44,18 @@ public class Lab3 {
   }
 
   public static void main(String[] args) {
-    ArrayList<String> patterns = generatePatternsWithNoDoubleDigits(3);
-    System.out.println(patterns);
+    int NUM_PATTERNS_TO_GENERATE = 10;
+
+    System.out.println("Generating all patterns of a given length:");
+    for (int i = 1; i <= NUM_PATTERNS_TO_GENERATE; i++) {
+      ArrayList<String> patterns = generateAllPatterns(i);
+      System.out.println("Length " + i + " produces " + patterns.size() + " patterns.");
+    }
+
+    System.out.println("\nGenerating patterns without double digits:");
+    for (int i = 1; i <= NUM_PATTERNS_TO_GENERATE; i++) {
+      ArrayList<String> patterns = generatePatternsWithNoDoubleDigits(i);
+      System.out.println("Length " + i + " produces " + patterns.size() + " patterns.");
+    }
   }
 }
