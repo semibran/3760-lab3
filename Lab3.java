@@ -7,13 +7,17 @@ public class Lab3 {
   static final int NUM_LIGHT_COLORS = 3;
   static final int NUM_PATTERNS_TO_GENERATE = 10;
 
+  public static ArrayList<String> generateIndexList(int n) {
+    ArrayList<String> patterns = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+      patterns.add(Integer.toString(i));
+    }
+    return patterns;
+  }
+
   public static ArrayList<String> generateAllPatterns(int n) {
     if (n == 1) {
-      ArrayList<String> patterns = new ArrayList<>();
-      for (int i = 0; i < NUM_LIGHT_COLORS; i++) {
-        patterns.add(Integer.toString(i));
-      }
-      return patterns;
+      return generateIndexList(NUM_LIGHT_COLORS);
     }
 
     ArrayList<String> patterns = new ArrayList<>();
@@ -28,15 +32,15 @@ public class Lab3 {
 
   public static ArrayList<String> generatePatternsWithNoDoubleDigits(int n) {
     if (n == 1) {
-      return generateAllPatterns(n);
+      return generateIndexList(NUM_LIGHT_COLORS);
     }
 
     ArrayList<String> patterns = new ArrayList<>();
     ArrayList<String> patternsPrev = generatePatternsWithNoDoubleDigits(n - 1);
     for (int i = 0; i < patternsPrev.size(); i++) {
       String prevPattern = patternsPrev.get(i);
+      char lastCharOfPrevPattern = prevPattern.charAt(prevPattern.length() - 1);
       for (int j = 0; j < NUM_LIGHT_COLORS; j++) {
-        char lastCharOfPrevPattern = prevPattern.charAt(prevPattern.length() - 1);
         char intAsChar = Integer.toString(j).charAt(0);
         if (lastCharOfPrevPattern != intAsChar) {
           patterns.add(prevPattern + intAsChar);
