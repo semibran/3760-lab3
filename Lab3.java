@@ -4,10 +4,13 @@ import java.util.ArrayList;
 
 public class Lab3 {
 
+  static final int NUM_LIGHT_COLORS = 3;
+  static final int NUM_PATTERNS_TO_GENERATE = 10;
+
   public static ArrayList<String> generateAllPatterns(int n) {
     if (n == 1) {
       ArrayList<String> patterns = new ArrayList<>();
-      for (int i = 0; i < 3; i++) {
+      for (int i = 0; i < NUM_LIGHT_COLORS; i++) {
         patterns.add(Integer.toString(i));
       }
       return patterns;
@@ -16,7 +19,7 @@ public class Lab3 {
     ArrayList<String> patterns = new ArrayList<>();
     ArrayList<String> patternsPrev = generateAllPatterns(n - 1);
     for (int i = 0; i < patternsPrev.size(); i++) {
-      for (int j = 0; j < 3; j++) {
+      for (int j = 0; j < NUM_LIGHT_COLORS; j++) {
         patterns.add(patternsPrev.get(i) + Integer.toString(j));
       }
     }
@@ -32,7 +35,7 @@ public class Lab3 {
     ArrayList<String> patternsPrev = generatePatternsWithNoDoubleDigits(n - 1);
     for (int i = 0; i < patternsPrev.size(); i++) {
       String prevPattern = patternsPrev.get(i);
-      for (int j = 0; j < 3; j++) {
+      for (int j = 0; j < NUM_LIGHT_COLORS; j++) {
         char lastCharOfPrevPattern = prevPattern.charAt(prevPattern.length() - 1);
         char intAsChar = Integer.toString(j).charAt(0);
         if (lastCharOfPrevPattern != intAsChar) {
@@ -44,8 +47,6 @@ public class Lab3 {
   }
 
   public static void main(String[] args) {
-    int NUM_PATTERNS_TO_GENERATE = 10;
-
     System.out.println("Generating all patterns of a given length:");
     for (int i = 1; i <= NUM_PATTERNS_TO_GENERATE; i++) {
       ArrayList<String> patterns = generateAllPatterns(i);
